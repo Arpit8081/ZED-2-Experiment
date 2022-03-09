@@ -1,0 +1,29 @@
+﻿cl : command line warning D9002: ignoring unknown option '-std=c++14'
+cl : command line warning D9002: ignoring unknown option '-O3'
+  GLViewer.cpp
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\include\GLViewer.hpp(7,10): fatal error C1083: Cannot open include file: 'ZEDNodel.hpp': No such file or directory
+  main.cpp
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(5992,16): warning C4251: 'sl::InitParameters::sdk_verbose_log_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6044,19): warning C4251: 'sl::InitParameters::input': class 'sl::InputType' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(640): message : see declaration of 'sl::InputType'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6059,16): warning C4251: 'sl::InitParameters::optional_settings_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6068,16): warning C4251: 'sl::InitParameters::optional_opencv_calibration_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6267,19): warning C4251: 'sl::PositionalTrackingParameters::initial_world_transform': class 'sl::Transform' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(2967): message : see declaration of 'sl::Transform'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6304,16): warning C4251: 'sl::PositionalTrackingParameters::area_file_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6468,31): warning C4251: 'sl::SpatialMappingParameters::allowed_resolution': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6483,31): warning C4251: 'sl::SpatialMappingParameters::allowed_range': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6635,16): warning C4251: 'sl::RecordingParameters::video_filename': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::RecordingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819,35): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_filter': class 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819): message : see declaration of 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825,39): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_detection_confidence_threshold': class 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825): message : see declaration of 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>'
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\include\GLViewer.hpp(7,10): fatal error C1083: Cannot open include file: 'ZEDNodel.hpp': No such file or directory
+  Generating Code...

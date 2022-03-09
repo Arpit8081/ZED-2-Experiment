@@ -1,0 +1,10 @@
+^C:\USERS\ME1ABP\DOWNLOADS\ZED-EXAMPLES-MASTER\ZED-EXAMPLES-MASTER\DEPTH SENSING\CPP\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/me1abp/Downloads/zed-examples-master/zed-examples-master/depth sensing/cpp" "-BC:/Users/me1abp/Downloads/zed-examples-master/zed-examples-master/depth sensing/cpp/build" --check-stamp-file "C:/Users/me1abp/Downloads/zed-examples-master/zed-examples-master/depth sensing/cpp/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

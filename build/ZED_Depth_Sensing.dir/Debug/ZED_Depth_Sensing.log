@@ -1,0 +1,70 @@
+﻿cl : command line warning D9002: ignoring unknown option '-std=c++14'
+cl : command line warning D9002: ignoring unknown option '-O3'
+  GLViewer.cpp
+  WARNING : 'Debug' builds are not supported since this library was built in 'Release', 'RelWithDebInfo' should be preferred to avoid crashes and memory issues
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(5992,16): warning C4251: 'sl::InitParameters::sdk_verbose_log_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6044,19): warning C4251: 'sl::InitParameters::input': class 'sl::InputType' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(640): message : see declaration of 'sl::InputType'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6059,16): warning C4251: 'sl::InitParameters::optional_settings_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6068,16): warning C4251: 'sl::InitParameters::optional_opencv_calibration_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6267,19): warning C4251: 'sl::PositionalTrackingParameters::initial_world_transform': class 'sl::Transform' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(2967): message : see declaration of 'sl::Transform'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6304,16): warning C4251: 'sl::PositionalTrackingParameters::area_file_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6468,31): warning C4251: 'sl::SpatialMappingParameters::allowed_resolution': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6483,31): warning C4251: 'sl::SpatialMappingParameters::allowed_range': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6635,16): warning C4251: 'sl::RecordingParameters::video_filename': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::RecordingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819,35): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_filter': class 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819): message : see declaration of 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825,39): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_detection_confidence_threshold': class 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825): message : see declaration of 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>'
+C:\Users\me1abp\Documents\ZED 2 Experiment\build\ZEDNodel.hpp(66,5): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\me1abp\Documents\ZED 2 Experiment\build\ZEDNodel.hpp(1201,40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(125,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(126,40): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(126,29): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(127,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(127,33): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(310,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(310,46): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(313,29): warning C4244: 'initializing': conversion from 'float' to 'size_t', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(400,21): warning C4930: 'std::string positional_tracking_state_str(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\GLViewer.cpp(824,66): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  main.cpp
+  WARNING : 'Debug' builds are not supported since this library was built in 'Release', 'RelWithDebInfo' should be preferred to avoid crashes and memory issues
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(5992,16): warning C4251: 'sl::InitParameters::sdk_verbose_log_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6044,19): warning C4251: 'sl::InitParameters::input': class 'sl::InputType' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(640): message : see declaration of 'sl::InputType'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6059,16): warning C4251: 'sl::InitParameters::optional_settings_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6068,16): warning C4251: 'sl::InitParameters::optional_opencv_calibration_file': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::InitParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6267,19): warning C4251: 'sl::PositionalTrackingParameters::initial_world_transform': class 'sl::Transform' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(2967): message : see declaration of 'sl::Transform'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6304,16): warning C4251: 'sl::PositionalTrackingParameters::area_file_path': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::PositionalTrackingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6468,31): warning C4251: 'sl::SpatialMappingParameters::allowed_resolution': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6483,31): warning C4251: 'sl::SpatialMappingParameters::allowed_range': struct 'std::pair<float,float>' needs to have dll-interface to be used by clients of struct 'sl::SpatialMappingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6361): message : see declaration of 'std::pair<float,float>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6635,16): warning C4251: 'sl::RecordingParameters::video_filename': class 'sl::String' needs to have dll-interface to be used by clients of struct 'sl::RecordingParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(145): message : see declaration of 'sl::String'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819,35): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_filter': class 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6819): message : see declaration of 'std::vector<sl::OBJECT_CLASS,std::allocator<sl::OBJECT_CLASS>>'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825,39): warning C4251: 'sl::ObjectDetectionRuntimeParameters::object_class_detection_confidence_threshold': class 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>' needs to have dll-interface to be used by clients of struct 'sl::ObjectDetectionRuntimeParameters'
+C:\Program Files (x86)\ZED SDK\include\sl/Camera.hpp(6825): message : see declaration of 'std::map<sl::OBJECT_CLASS,float,std::less<sl::OBJECT_CLASS>,std::allocator<std::pair<const sl::OBJECT_CLASS,float>>>'
+C:\Users\me1abp\Documents\ZED 2 Experiment\build\ZEDNodel.hpp(66,5): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\me1abp\Documents\ZED 2 Experiment\build\ZEDNodel.hpp(1201,40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\main.cpp(123,119): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\main.cpp(127,33): warning C4996: 'sl::CameraInformation::camera_resolution': Use camera_configuration.resolution instead
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\main.cpp(183,13): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\src\main.cpp(188,20): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Generating Code...
+  ZED_Depth_Sensing.vcxproj -> C:\Users\me1abp\Downloads\zed-examples-master\zed-examples-master\depth sensing\cpp\build\Debug\ZED_Depth_Sensing.exe
