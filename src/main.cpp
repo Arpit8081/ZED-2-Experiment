@@ -28,7 +28,9 @@
 
 // Sample includes
 #include "GLViewer.hpp"
+//#include "GLViewer1.hpp"
 
+#include <opencv2/opencv.hpp>
 // Using std and sl namespaces
 using namespace std;
 using namespace sl;
@@ -36,6 +38,11 @@ using namespace sl;
 
 void parseArgs(int argc, char **argv, sl::InitParameters& param);
 
+// Change 
+
+void print(std::string msg_prefix, sl::ERROR_CODE err_code = sl::ERROR_CODE::SUCCESS, std::string msg_suffix = "");
+
+//
 int main(int argc, char **argv) {
     Camera zed;
     // Set configuration parameters for the ZED
@@ -48,27 +55,76 @@ int main(int argc, char **argv) {
     auto returned_state = zed.open(init_parameters);
     if (returned_state != ERROR_CODE::SUCCESS) {
         print("Camera Open", returned_state, "Exit program.");
+        //Change
+        zed.close();
+        //
         return EXIT_FAILURE;
     }
 
-    auto camera_config = zed.getCameraInformation().camera_configuration;
-
+   // auto camera_config = zed.getCameraInformation().camera_configuration;
+   //Change
+    auto camera_infos = zed.getCameraInformation();
+    //
+    
     // Point cloud viewer
     GLViewer viewer;
     // Initialize point cloud viewer 
-    GLenum errgl = viewer.init(argc, argv, camera_config.calibration_parameters.left_cam);
+
+    //change
+    FusedPointCloud map;
+    //
+    GLenum errgl = viewer.init(argc, argv, camera_infos.camera_configuration.calibration_parameters.left_cam, &map, camera_infos.camera_model);
     if (errgl != GLEW_OK) {
         print("Error OpenGL: " + std::string((char*)glewGetErrorString(errgl)));
         return EXIT_FAILURE;
     }
+    
+    //change
+    
+    // Setup and start positional tracking
+    Pose pose;
+    POSITIONAL_TRACKING_STATE tracking_state = zed.getPosition(pose, REFERENCE_FRAME::WORLD);
+   // POSITIONAL_TRACKING_STATE tracking_state = POSITIONAL_TRACKING_STATE::OFF;
+    PositionalTrackingParameters positional_tracking_parameters;
+    positional_tracking_parameters.enable_area_memory = false;
+    returned_state = zed.enablePositionalTracking(positional_tracking_parameters);
+    if (returned_state != ERROR_CODE::SUCCESS) {
+        print("Enabling positional tracking failed: ", returned_state);
+        zed.close();
+        return EXIT_FAILURE;
+    }
+    //
+     // Set spatial mapping parameters
+    SpatialMappingParameters spatial_mapping_parameters;
+    // Request a Point Cloud
+    spatial_mapping_parameters.map_type = SpatialMappingParameters::SPATIAL_MAP_TYPE::FUSED_POINT_CLOUD;
+    // Set mapping range, it will set the resolution accordingly (a higher range, a lower resolution)
+    spatial_mapping_parameters.set(SpatialMappingParameters::MAPPING_RANGE::LONG);
+    // Request partial updates only (only the lastest updated chunks need to be re-draw)
+    spatial_mapping_parameters.use_chunk_only = true;
+    // Start the spatial mapping
+    zed.enableSpatialMapping(spatial_mapping_parameters);
 
+    // Timestamp of the last fused point cloud requested
+    chrono::high_resolution_clock::time_point ts_last;
+    
+    //Change
     RuntimeParameters runParameters;
     // Setting the depth confidence parameters
     runParameters.confidence_threshold = 50;
     runParameters.texture_confidence_threshold = 100;
+    
+    //Change
+    auto resolution = camera_infos.camera_configuration.resolution;
+    Resolution display_resolution(min((int)resolution.width, 720), min((int)resolution.height, 404));
 
+    // Create a Mat to contain the left image and its opencv ref
+    Mat image_zed(display_resolution, MAT_TYPE::U8_C4);
+    cv::Mat image_zed_ocv(image_zed.getHeight(), image_zed.getWidth(), CV_8UC4, image_zed.getPtr<sl::uchar1>(MEM::CPU));
+    //
+    
     // Allocation of 4 channels of float on GPU
-    Mat point_cloud(camera_config.resolution, MAT_TYPE::F32_C4, MEM::GPU);
+    Mat point_cloud(camera_infos.camera_resolution, MAT_TYPE::F32_C4, MEM::GPU);
 
     // Main Loop
     while (viewer.isAvailable()) {        
@@ -76,12 +132,38 @@ int main(int argc, char **argv) {
         if (zed.grab(runParameters) == ERROR_CODE::SUCCESS) {
             // retrieve the current 3D coloread point cloud in GPU
             zed.retrieveMeasure(point_cloud, MEASURE::XYZRGBA, MEM::GPU);
-            viewer.updatePointCloud(point_cloud);
+           // To see Depth Sensing output
+           viewer.updatePointCloud(point_cloud);
+            //Change
+            zed.retrieveImage(image_zed, VIEW::LEFT, MEM::CPU, display_resolution);
+            tracking_state = zed.getPosition(pose);
+            viewer.updatePose(pose, tracking_state);
+
+            if (tracking_state == POSITIONAL_TRACKING_STATE::OK) {
+                auto duration = chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - ts_last).count();
+
+                // Ask for a fused point cloud update if 500ms have elapsed since last request
+                if ((duration > 500) && viewer.chunksUpdated()) {
+                    // Ask for a point cloud refresh
+                    zed.requestSpatialMapAsync();
+                    ts_last = chrono::high_resolution_clock::now();
+                }
+
+                // If the point cloud is ready to be retrieved
+                if (zed.getSpatialMapRequestStatusAsync() == ERROR_CODE::SUCCESS) {
+                    zed.retrieveSpatialMapAsync(map);
+                    viewer.updateChunks();
+                }
+            }
+            cv::imshow("ZED View", image_zed_ocv);
+            cv::waitKey(15);
+            //
         }
     }
     // free allocated memory before closing the ZED
     point_cloud.free();
 
+    image_zed.free();
     // close the ZED
     zed.close();
 
@@ -92,6 +174,8 @@ void parseArgs(int argc, char **argv, sl::InitParameters& param) {
     if (argc > 1 && string(argv[1]).find(".svo") != string::npos) {
         // SVO input mode
         param.input.setFromSVOFile(argv[1]);
+        param.svo_real_time_mode = true;
+
         cout << "[Sample] Using SVO File input: " << argv[1] << endl;
     } else if (argc > 1 && string(argv[1]).find(".svo") == string::npos) {
         string arg = string(argv[1]);
@@ -123,5 +207,21 @@ void parseArgs(int argc, char **argv, sl::InitParameters& param) {
     }
 }
 
-
+//change
+void print(std::string msg_prefix, sl::ERROR_CODE err_code, std::string msg_suffix) {
+    cout << "[Sample]";
+    if (err_code != sl::ERROR_CODE::SUCCESS)
+        cout << "[Error] ";
+    else
+        cout << " ";
+    cout << msg_prefix << " ";
+    if (err_code != sl::ERROR_CODE::SUCCESS) {
+        cout << " | " << toString(err_code) << " : ";
+        cout << toVerbose(err_code);
+    }
+    if (!msg_suffix.empty())
+        cout << " " << msg_suffix;
+    cout << endl;
+}
+//
 
