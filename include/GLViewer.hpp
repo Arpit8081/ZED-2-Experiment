@@ -4,6 +4,7 @@
 #include <vector>
 #include <mutex>
 
+#include "ZEDNodel.hpp"
 #include <sl/Camera.hpp>
 
 #include <GL/glew.h>
@@ -12,20 +13,25 @@
 #include <cuda.h>
 #include <cuda_gl_interop.h>
 
+//change
+
+#include <list>
+//
+
 #ifndef M_PI
 #define M_PI 3.141592653f
 #endif
 
-#define MOUSE_R_SENSITIVITY 0.03f
-#define MOUSE_UZ_SENSITIVITY 0.5f
-#define MOUSE_DZ_SENSITIVITY 1.25f
-#define MOUSE_T_SENSITIVITY 0.05f
-#define KEY_T_SENSITIVITY 0.1f
+const float MOUSE_R_SENSITIVITY = 0.025f;
+const float MOUSE_UZ_SENSITIVITY = 0.75f;
+const float MOUSE_DZ_SENSITIVITY = 1.25f;
+const float MOUSE_T_SENSITIVITY = 80.f;
+const float KEY_T_SENSITIVITY = 0.1f;
 
 
 //// UTILS //////
 using namespace std;
-void print(std::string msg_prefix, sl::ERROR_CODE err_code = sl::ERROR_CODE::SUCCESS, std::string msg_suffix = "") ;
+//void print(std::string msg_prefix, sl::ERROR_CODE err_code = sl::ERROR_CODE::SUCCESS, std::string msg_suffix = "") ;
 
 /////////////////
 
@@ -112,14 +118,27 @@ private:
     GLuint programId_;
 };
 
+//change
+
+struct ShaderData {
+    Shader it;
+    GLuint MVP_Mat;
+};
+
+//
 class Simple3DObject {
 public:
 
-    Simple3DObject() {}
+    Simple3DObject();
     Simple3DObject(sl::Translation position, bool isStatic);
     ~Simple3DObject();
 
-    void addPoint(sl::float3 pt, sl::float3 clr);
+    //void addPoint(sl::float3 pt, sl::float3 clr);
+    //change
+    void addPoint(float x, float y, float z, float r, float g, float b);
+    void addLine(sl::float3 p1, sl::float3 p2, sl::float3 clr);
+    void addPoint(sl::float3 position, sl::float3 color);
+    //
     void addFace(sl::float3 p1, sl::float3 p2, sl::float3 p3, sl::float3 clr);
     void pushToGPU();
     void clear();
@@ -158,12 +177,27 @@ private:
             - [2]: Indices;
      */
     GLuint vboID_[3];
+    int current_fc;
 
     sl::Translation position_;
     sl::Orientation rotation_;
 
 };
+//change
 
+class SubMapObj {
+    GLuint vaoID_;
+    GLuint vboID_[2];
+    int current_fc;
+
+    std::vector<sl::uint1> index;
+public:
+    SubMapObj();
+    ~SubMapObj();
+    void update(sl::PointCloudChunk& chunks);
+    void draw();
+};
+//
 class PointCloud {
 public:
     PointCloud();
@@ -189,6 +223,7 @@ private:
     sl::Mat matGPU_;
     bool hasNewPCL_ = false;
     Shader shader_;
+    Shader shader_pointCloud;
     GLuint shMVPMatrixLoc_;
     size_t numBytes_;
     float* xyzrgbaMappedBuf_;
@@ -203,9 +238,22 @@ public:
     ~GLViewer();
     bool isAvailable();
 
-    GLenum init(int argc, char **argv, sl::CameraParameters param);
+    GLenum init(int argc, char** argv, sl::CameraParameters parm);
+    GLenum init(int argc, char **argv, sl::CameraParameters param, sl::FusedPointCloud* ptr, sl::MODEL zed_model);
     void updatePointCloud(sl::Mat &matXYZRGBA);
+    
+    //change
+    void updatePose(sl::Pose pose_, sl::POSITIONAL_TRACKING_STATE tracking_state);
 
+    void updateChunks() {
+        new_chunks = true;
+        chunks_pushed = false;
+    }
+
+    bool chunksUpdated() {
+        return chunks_pushed;
+    }
+    //
     void exit();
 private:
     // Rendering loop method called each frame by glutDisplayFunc
@@ -216,6 +264,10 @@ private:
     void draw();
     // Clear and refresh inputs' data
     void clearInputs();
+
+    //change
+    void printText();
+    //
     
     // Glut functions callbacks
     static void drawCallback();
@@ -255,6 +307,30 @@ private:
     CameraGL camera_;
     Shader shader_;
     GLuint shMVPMatrixLoc_;
+
+    //change
+    Simple3DObject zedModel;
+    Simple3DObject zedPath;
+    std::vector<sl::float3> vecPath;
+
+    std::mutex mtx;
+    bool updateZEDposition = false;;
+
+    sl::Pose pose;
+
+    sl::POSITIONAL_TRACKING_STATE tracking_state;
+
+    bool followCamera = true;
+    bool new_chunks = false;
+    bool chunks_pushed = false;
+
+   
+    ShaderData mainShader;
+    ShaderData pcf_shader;
+
+    sl::FusedPointCloud* p_fpc;
+    std::list<SubMapObj> sub_maps;  // Opengl mesh container
+    //
 };
 
 #endif /* __VIEWER_INCLUDE__ */
